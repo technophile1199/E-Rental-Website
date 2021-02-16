@@ -1,0 +1,76 @@
+<app-page-title [title]="router.url === '/account/profile' ? 'My Profile' : 'My Products'" [children]="[{title: 'Account', link: '/account'}, {title: router.url === '/account/profile' ? 'My Profile' : 'My Products'}]"></app-page-title>
+
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-2">
+  <div class="row">
+    <div class="col-lg-4">
+      <aside class="user-info-wrapper">
+        <div class="user-cover" style="background-image: url(img/user-cover-img.jpg);">
+        </div>
+        <div class="user-info">
+           <div class="user-avatar">
+            <a class="edit-avatar" href="#"></a>
+            <img src="img/account/user-ava.jpg" alt="User">
+          </div> 
+          <div *ngIf="user" class="user-data">
+            <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+            <span>{{ user.email }} <span *ngIf="user.roles.admin">(Admin)</span><span *ngIf="user.roles.Seller">(Seller)</span></span>
+          </div>
+        </div>
+      </aside>
+      <nav class="list-group">
+        <a class="list-group-item" routerLinkActive="active" routerLink="/account/profile">
+          <i class="icon-head"></i>Profile
+        </a>
+
+        <a class="list-group-item with-badge" routerLinkActive="active" routerLink="/cart" href="">
+          <i class="icon-heart"></i>Wishlist
+        </a>
+
+        <a  *ngIf="user && user.roles.Seller" class="list-group-item" routerLinkActive="active" routerLink="tamaraproducts" href="" >
+            <i class="icon-head"></i>View Your Products
+        </a>
+
+        <a *ngIf="user && user.roles.admin" class="list-group-item" routerLinkActive="active"  routerLink = "producttable" href="">
+          <i class="icon-bag" ></i>View Products
+        </a>
+
+        <a  *ngIf="user && user.roles.admin" class="list-group-item" routerLinkActive="active" routerLink="sellertable" href="" >
+          <i class="icon-head"></i>View Sellers
+        </a>
+
+        <a *ngIf="user && user.roles.admin" class="list-group-item" routerLinkActive="active" routerLink="/admin/add" href="">
+          <i class="icon-plus"></i>Add Products
+          </a>
+
+          <a  *ngIf="user && user.roles.admin" class="list-group-item" routerLinkActive="active" routerLink="/account/Feedbacktable" href="">
+            <i class="icon-plus"></i>View Feedbacks
+            </a>
+          
+      </nav>
+    </div>
+    <div class="col-lg-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

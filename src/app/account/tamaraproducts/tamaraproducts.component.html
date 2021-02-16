@@ -1,0 +1,30 @@
+<div class="padding-top-2x mt-2 hidden-lg-up">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover margin-bottom-none">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Location</th>
+          <th>Edit/Delete</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr *ngFor="let item of items">
+         <td>{{item.name}}</td>
+         <td>{{item.type}}</td> 
+          <td>{{item.location}}</td>
+          <td>
+              <a routerLink="/admin/edit/{{item.id}}">
+                Edit
+              </a>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+  <hr>
